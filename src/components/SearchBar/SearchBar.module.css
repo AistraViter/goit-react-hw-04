@@ -1,0 +1,24 @@
+.searchBar {
+  display: flex;
+  gap: 8px;
+}
+
+.searchBar input {
+  box-sizing: border-box;
+  width: 400px;
+  height: 40px;
+  border: 2px solid rgb(131, 131, 131);
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.searchBar button {
+  height: 40px;
+  padding: 8px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  border: 2px solid rgb(131, 131, 131);
+  border-radius: 4px;
+}
