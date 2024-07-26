@@ -3,25 +3,22 @@ import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ onSearch }) => {
   const { searchBar } = styles;
-    const initialValues = {
+  const initialValues = {
     topic: "",
   };
 
   const handleSubmit = (values, actions) => {
-		if(values.topic.trim() === "") {
-			alert("Please enter search term!")
-			return;
-		}
+    if (values.topic.trim() === "") {
+      alert("Please enter search term!");
+      return;
+    }
+
     onSearch(values.topic);
     actions.resetForm();
   };
 
-
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-    >
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={searchBar}>
         <Field
           type="text"
@@ -35,4 +32,3 @@ const SearchBar = ({ onSearch }) => {
 };
 
 export default SearchBar;
-

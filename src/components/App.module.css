@@ -1,13 +1,37 @@
 .container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh; /* Висота сторінки */
+  min-width: 320px;
+  min-width: 360px;
+
 
 }
 .header {
-    box-sizing: border-box;
-    background-color: blueviolet;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 8px;
+  box-sizing: border-box;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
   }
-  
+}
+
+@media (min-width: 1158px) {
+  .container {
+    max-width: 1158px;
+  }
+}
+@media (min-width: 1492px) {
+  .container {
+    max-width: 1492px;
+  }
+}

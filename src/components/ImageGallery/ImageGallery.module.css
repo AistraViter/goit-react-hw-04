@@ -4,12 +4,13 @@
   margin: 40px auto;
   padding: 0;
   display: flex;
-  gap: 16px;
+  gap: 24px;
   flex-wrap: wrap;
-  row-gap: 16px;
-  justify-content: center;
+  row-gap: 24px;
+  justify-content: space-between; /* Рівномірний розподіл елементів */
   align-items: center;
 }
+
 
 /* @media (max-width: 767px) {
   .imageGallery {
@@ -19,17 +20,17 @@
 
 @media (min-width: 768px) {
   .imageGallery {
-    max-width: 768px;
+    max-width: 676px;
   }
 }
 
 @media (min-width: 1158px) {
     .imageGallery {
-      max-width: 1158px;
+      max-width: 1080px;
     }
   }
   @media (min-width: 1492px) {
     .imageGallery {
-      max-width: 1492px;
+      max-width: 1420px;
     }
   }
