@@ -17,7 +17,7 @@ function App() {
       setLoading(true);
       setImages([]);
       setError(false);
-      const data = await fetchImages(newtopic);
+      const data = await fetchImages(newtopic, 2);
       setImages(data);
       console.log("Images updated:", data);
 

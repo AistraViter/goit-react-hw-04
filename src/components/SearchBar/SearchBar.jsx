@@ -1,4 +1,5 @@
 import { Formik, Form, Field } from "formik";
+import toast, { Toaster } from 'react-hot-toast';
 import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ onSearch }) => {
@@ -9,7 +10,7 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSubmit = (values, actions) => {
     if (values.topic.trim() === "") {
-      alert("Please enter search term!");
+      toast.error("Please enter search term!");
       return;
     }
 
@@ -18,6 +19,7 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
+    <> 
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={searchBar}>
         <Field
@@ -28,6 +30,9 @@ const SearchBar = ({ onSearch }) => {
         <button type="submit">Search</button>
       </Form>
     </Formik>
+    <Toaster />
+    </>
+    
   );
 };
 
