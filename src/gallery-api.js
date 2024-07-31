@@ -9,7 +9,7 @@ export async function fetchImages(query, page) {
     params: {
       client_id: API_KEY,
       page: page,
-      per_page: 24,
+      per_page: 12,
       query: query,
     },
   });

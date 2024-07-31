@@ -1,6 +1,6 @@
 import styles from "./ImageCard.module.css";
 const { imageCard } = styles;
-const ImageCard = ({ image }) => {
+const ImageCard = ({ image, onClick }) => {
   let orientation;
 
   if (
@@ -14,10 +14,12 @@ const ImageCard = ({ image }) => {
     orientation = "portrait";
   }
   return (
-    <div className={imageCard}>
+    <div className={imageCard} onClick={onClick}>
       <img src={image.urls.small} alt={image.alt_description} />
       <span>{orientation}</span>
     </div>
   );
 };
 export default ImageCard;
+
+

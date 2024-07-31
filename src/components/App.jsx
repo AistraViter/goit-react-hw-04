@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import SearchBar from "./SearchBar/SearchBar";
 import ImageGallery from "./ImageGallery/ImageGallery";
@@ -17,6 +17,7 @@ function App({ errorMessage }) {
   const [topic, setTopic] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const imagesContainerRef = useRef(null); // Створення рефу
 
   const handleSearch = async (newTopic) => {
     setImages([]);
@@ -68,12 +69,28 @@ function App({ errorMessage }) {
     getImages();
   }, [topic, page, errorMessage]);
 
+  useEffect(() => {
+    // Прокрутка вниз до контейнера зображень після оновлення зображень
+    if (imagesContainerRef.current) {
+      const containerBottom = imagesContainerRef.current.offsetTop + imagesContainerRef.current.clientHeight;
+    
+      // Припустимо, що висота зображення є фіксованою або ви знаєте її
+      const imageHeight = 220; // Задайте висоту зображення (впишіть реальне значення)
+      const offset = imageHeight*4; // Половина висоти зображення
+    
+      window.scrollTo({
+        top: containerBottom - offset, // Прокрутка до нижнього краю контейнера з підняттям на половину зображення
+        behavior: "smooth", // Додає плавну прокрутку
+          });
+    }
+  }, [images]); // Залежність від зображень
+
   return (
     <div>
       <header className={header}>
         <SearchBar onSearch={handleSearch} />
       </header>
-      <div className={container}>
+      <div className={container} ref={imagesContainerRef}>
         {loading && <Loader />}
         {error && <ErrorMessage />}
         {images.length > 0 && <ImageGallery items={images} />}
