@@ -3,11 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh; /* Висота сторінки */
   min-width: 320px;
   min-width: 360px;
-
-
 }
 .header {
   box-sizing: border-box;

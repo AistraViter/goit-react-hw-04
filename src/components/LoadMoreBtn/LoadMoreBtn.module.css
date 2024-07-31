@@ -1,0 +1,12 @@
+button.loadMoreBtn {
+    height: 40px;
+    padding: 8px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background-color: blueviolet;
+    color: aliceblue;
+    border: 2px solid rgb(131, 131, 131);
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  
