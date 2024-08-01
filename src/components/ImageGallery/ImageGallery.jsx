@@ -1,12 +1,12 @@
 import Modal from "react-modal";
 import { useState } from "react";
 import ImageCard from "../ImageCard/ImageCard";
-import styles from "./ImageGallery.module.css";
-import modalstyles from "./ImageModal.module.css";
+import ImageModal from "../ImageModal/ImageModal"; // Імпортуємо компонент ImageModal
 
-Modal.setAppElement("#root"); 
+import styles from "./ImageGallery.module.css";
+
+Modal.setAppElement("#root");
 const { imageGallery } = styles;
- const { imageModalContent, imageModalOverlay, imageModalContainer} = modalstyles;
 
 const ImageGallery = ({ items }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,8 +22,6 @@ const ImageGallery = ({ items }) => {
     setSelectedImage(null);
   };
 
-  
-
   return (
     <div>
       <ul className={imageGallery}>
@@ -33,23 +31,13 @@ const ImageGallery = ({ items }) => {
           </li>
         ))}
       </ul>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Image Modal"
-        className={imageModalContent}
-        overlayClassName={imageModalOverlay}
-
-      >
-        {selectedImage && (
-          <div   className={imageModalContainer} >
-            <img 
-              src={selectedImage.urls.regular}
-              alt={selectedImage.alt_description}
-            />
-          </div>
-        )}
-      </Modal>
+      {selectedImage && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          selectedImage={selectedImage}
+        />
+      )}
     </div>
   );
 };
