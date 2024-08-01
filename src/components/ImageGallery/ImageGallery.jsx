@@ -2,15 +2,16 @@ import Modal from "react-modal";
 import { useState } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import styles from "./ImageGallery.module.css";
+import modalstyles from "./ImageModal.module.css";
 
-// Налаштування елемента додатка для забезпечення доступності
-Modal.setAppElement("#root"); // або інший кореневий елемент вашого додатка
-
+Modal.setAppElement("#root"); 
 const { imageGallery } = styles;
+ const { imageModalContent, imageModalOverlay} = modalstyles;
 
 const ImageGallery = ({ items }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+
   const openModal = (image) => {
     setSelectedImage(image);
     setModalIsOpen(true);
@@ -21,16 +22,14 @@ const ImageGallery = ({ items }) => {
     setSelectedImage(null);
   };
 
+  
+
   return (
     <div>
       <ul className={imageGallery}>
         {items.map((item) => (
           <li key={item.id}>
-            <ImageCard
-              image={item}
-              onClick={() => openModal(item)}
-              style={{ cursor: "pointer" }}
-            />
+            <ImageCard image={item} onClick={() => openModal(item)} />
           </li>
         ))}
       </ul>
@@ -38,12 +37,17 @@ const ImageGallery = ({ items }) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Image Modal"
+        className={imageModalContent}
+        overlayClassName={imageModalOverlay}
+
       >
         {selectedImage && (
-          <div>
-            <h2>{selectedImage.title}</h2>
-            <img src={selectedImage.url} alt={selectedImage.alt} />
-            <button onClick={closeModal}>Close</button>
+          <div style={{ position: 'relative' }}>
+            <img 
+              src={selectedImage.urls.regular}
+              alt={selectedImage.alt_description}
+              style={{ maxHeight: '80vh', maxWidth: '80vw', objectFit: 'contain' }}
+            />
           </div>
         )}
       </Modal>
