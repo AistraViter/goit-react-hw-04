@@ -6,7 +6,7 @@ import modalstyles from "./ImageModal.module.css";
 
 Modal.setAppElement("#root"); 
 const { imageGallery } = styles;
- const { imageModalContent, imageModalOverlay} = modalstyles;
+ const { imageModalContent, imageModalOverlay, imageModalContainer} = modalstyles;
 
 const ImageGallery = ({ items }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -42,11 +42,10 @@ const ImageGallery = ({ items }) => {
 
       >
         {selectedImage && (
-          <div style={{ position: 'relative' }}>
+          <div   className={imageModalContainer} >
             <img 
               src={selectedImage.urls.regular}
               alt={selectedImage.alt_description}
-              style={{ maxHeight: '80vh', maxWidth: '80vw', objectFit: 'contain' }}
             />
           </div>
         )}
