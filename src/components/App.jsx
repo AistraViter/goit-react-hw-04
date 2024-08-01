@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import SearchBar from "./SearchBar/SearchBar";
 import ImageGallery from "./ImageGallery/ImageGallery";
+import ImageModal from "./ImageModal/ImageModal";
 import Loader from "./Loader/Loader";
 import ErrorMessage from "./ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
@@ -17,6 +18,9 @@ function App({ errorMessage }) {
   const [topic, setTopic] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
   const imagesContainerRef = useRef(null); // Створення рефу
 
   const handleSearch = async (newTopic) => {
@@ -72,18 +76,32 @@ function App({ errorMessage }) {
   useEffect(() => {
     // Прокрутка вниз до контейнера зображень після оновлення зображень
     if (imagesContainerRef.current) {
-      const containerBottom = imagesContainerRef.current.offsetTop + imagesContainerRef.current.clientHeight;
-    
+      const containerBottom =
+        imagesContainerRef.current.offsetTop +
+        imagesContainerRef.current.clientHeight;
+
       // Припустимо, що висота зображення є фіксованою або ви знаєте її
       const imageHeight = 220; // Задайте висоту зображення (впишіть реальне значення)
-      const offset = imageHeight*4; // Половина висоти зображення
-    
+      const offset = imageHeight * 4; // Половина висоти зображення
+
       window.scrollTo({
         top: containerBottom - offset, // Прокрутка до нижнього краю контейнера з підняттям на половину зображення
         behavior: "smooth", // Додає плавну прокрутку
-          });
+      });
     }
   }, [images]); // Залежність від зображень
+
+  // Мадальне вікно
+
+  const openModal = (image) => {
+    setSelectedImage(image);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setSelectedImage(null);
+  };
 
   return (
     <div>
@@ -93,11 +111,20 @@ function App({ errorMessage }) {
       <div className={container} ref={imagesContainerRef}>
         {loading && <Loader />}
         {error && <ErrorMessage />}
-        {images.length > 0 && <ImageGallery items={images} />}
+        {images.length > 0 && (
+          <ImageGallery items={images} openModal={openModal} />
+        )}
         {loadMore && page < totalPages && (
           <LoadMoreBtn onClick={handleLoadMore} />
         )}
         {<Toaster />}
+        {selectedImage && (
+          <ImageModal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            selectedImage={selectedImage}
+          />
+        )}
       </div>
     </div>
   );
