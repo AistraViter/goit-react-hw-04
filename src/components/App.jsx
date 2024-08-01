@@ -73,8 +73,9 @@ function App({ errorMessage }) {
     getImages();
   }, [topic, page, errorMessage]);
 
+  // Прокрутка вниз до контейнера зображень після оновлення зображень
+
   useEffect(() => {
-    // Прокрутка вниз до контейнера зображень після оновлення зображень
     if (imagesContainerRef.current) {
       const containerBottom =
         imagesContainerRef.current.offsetTop +

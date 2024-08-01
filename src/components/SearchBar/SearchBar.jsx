@@ -1,9 +1,10 @@
 import { Formik, Form, Field } from "formik";
-import toast, { Toaster } from 'react-hot-toast';
+import { PiMagnifyingGlass } from "react-icons/pi";
+import toast, { Toaster } from "react-hot-toast";
 import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ onSearch }) => {
-  const { searchBar } = styles;
+  const { searchBar, searchBarIcon, searchBarInputContainer } = styles;
   const initialValues = {
     topic: "",
   };
@@ -19,20 +20,23 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <> 
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form className={searchBar}>
-        <Field
-          type="text"
-          name="topic"
-          placeholder="Search images and photos"
-        />
-        <button type="submit">Search</button>
-      </Form>
-    </Formik>
-    <Toaster />
+    <>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Form className={searchBar}>
+          <div className={searchBarInputContainer}>
+            <PiMagnifyingGlass className={searchBarIcon} />
+            <Field
+              type="text"
+              name="topic"
+              placeholder="Search images and photos"
+            />
+          </div>
+
+          <button type="submit">Search</button>
+        </Form>
+      </Formik>
+      <Toaster />
     </>
-    
   );
 };
 
