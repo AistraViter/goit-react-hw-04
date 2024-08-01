@@ -4,15 +4,14 @@
 }
 .searchBarInputContainer {
   position: relative; /* Позиціюємо контейнер для іконки */
-
 }
-.searchBarIcon{
+.searchBarIcon {
   position: absolute; /* Розміщуємо іконку поверх поля вводу */
   left: 10px; /* Відстань від лівого краю */
   top: 50%; /* Вертикальне центрування */
   transform: translateY(-50%); /* Центрування по вертикалі */
-  color: gray; /* Колір іконки */
-
+  color: gray; 
+  cursor: pointer;
 }
 
 .searchBar input {
@@ -22,16 +21,7 @@
   border: 2px solid rgb(131, 131, 131);
   border-radius: 4px;
   padding: 4px 8px;
-  padding-left: 36px; 
+  padding-left: 36px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-}
-
-.searchBar button {
-  height: 40px;
-  padding: 8px 12px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  border: 2px solid rgb(131, 131, 131);
-  border-radius: 4px;
 }

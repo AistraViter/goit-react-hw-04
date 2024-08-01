@@ -22,18 +22,18 @@ const SearchBar = ({ onSearch }) => {
   return (
     <>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form className={searchBar}>
-          <div className={searchBarInputContainer}>
-            <PiMagnifyingGlass className={searchBarIcon} />
-            <Field
-              type="text"
-              name="topic"
-              placeholder="Search images and photos"
-            />
-          </div>
-
-          <button type="submit">Search</button>
-        </Form>
+        {({ handleSubmit }) => (
+          <Form className={searchBar} onSubmit={handleSubmit}>
+            <div className={searchBarInputContainer}>
+              <PiMagnifyingGlass className={searchBarIcon} onClick={handleSubmit} />
+              <Field
+                type="text"
+                name="topic"
+                placeholder="Search images and photos"
+              />
+            </div>
+          </Form>
+        )}
       </Formik>
       <Toaster />
     </>
