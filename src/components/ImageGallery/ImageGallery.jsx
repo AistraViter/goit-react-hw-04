@@ -1,11 +1,9 @@
-import Modal from "react-modal";
 import { useState } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import ImageModal from "../ImageModal/ImageModal"; // Імпортуємо компонент ImageModal
 
 import styles from "./ImageGallery.module.css";
 
-Modal.setAppElement("#root");
 const { imageGallery } = styles;
 
 const ImageGallery = ({ items }) => {
